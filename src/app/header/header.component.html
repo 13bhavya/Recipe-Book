@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">Receipe Book</a>
+      </div>
+      <button class="collapsed navbar-toggler" type="button" (click)="collapsed = !collapsed">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [class.collapse]='collapsed' (window:resize)="collapsed = true">
+        <ul class="nav navbar-nav mr-auto">
+          <li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/recipes']" *ngIf="isAuthenticated">Receipes</a></li>
+          <li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/auth']" *ngIf="!isAuthenticated">Authenticate</a></li>
+          <li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/shoppingList']">Shoppinglist</a></li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto" *ngIf="isAuthenticated">
+          <li>
+            <button class="btn btn-primary mr-2" (click)="onLogout()">Logout</button>
+          </li>
+          <li ngbDropdown>
+            <button class="btn btn-primary" ngbDropdownToggle id="dropdown" type="button">Manage
+              <span class="caret"></span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdown">
+              <a ngbDropdownItem style="cursor: pointer;" (click)="onSave()">Save</a>
+              <a ngbDropdownItem style="cursor: pointer;" (click)="onFetch()">Fetch</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
